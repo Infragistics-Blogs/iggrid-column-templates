@@ -15,7 +15,7 @@ In the documentation many of the examples demonstrate how to use the column temp
 
 Here is the template used to render data in the grid. It’s a bit involved so I’ll review some of the more interesting segments after you’ve had a chance to survey the entire template.
 
-```
+```html
 <script id="sessions-template" type="text/template">
     <div class="row pad-top-md pad-bottom-md pad-right-md">
         <div class="col-xs-4 col-sm-2 text-center bio-links">
