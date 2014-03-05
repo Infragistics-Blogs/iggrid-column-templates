@@ -4,7 +4,7 @@
 When working with the igGrid you have the option to harness the column template feature in order to take control of how data is presented in a column inside the grid. While you can use the column template to make some relatively simple modifications to the data (e.g., add labels, etc.) you can also use it to take full control over the layout of a rendered column.
 The following screenshot shows how to use the grid with a single column to render data with a custom layout. 
 
-<img width="948" height="356" title="" alt="" src="http://raw.github.com/Infragistics-Blogs/iggrid-column-templates/master/iggrid-column-templates.png" />
+<img style="width:100%;max-width:948px" title="Demo of binding igGrid column template to complex JavaScript object." alt="" src="http://raw.github.com/Infragistics-Blogs/iggrid-column-templates/master/iggrid-column-templates.png" />
 
 Here data for the grid is laid out using Bootstrap layout classes in order to arrange the data in the grid in more complex fashion than traditional rows and columns.
 
