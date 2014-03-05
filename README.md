@@ -72,8 +72,11 @@ First, take a closer look at the loop syntax in the template:
 ```
 
 As you review this code you’ll notice that:
+
 1. Loop blocks are surrounded with the opening statement of `{{each ${MEMBER_NAME}}}` and closing statement of `{{/each}}` where `MEMBER_NAME` is the member of the JavaScript object that is being bound to the template, which in this case is `tagsList`.
+
 2. You must not use double quotes inside a loop block. Double quotes will cause a syntax error as the template is compiled. Instead of using double quotes you can safely use the single quote character (`'`) in your template and they are transformed into double quotes after the template is compiled and rendered.
+
 3. In order to gain access to the data item in each iteration you use the `$data` syntax. Also note that here you do not surround the token name with curly braces.
 
 Now that the template is setup you can look at ways to provide the template’s markup to the grid.
