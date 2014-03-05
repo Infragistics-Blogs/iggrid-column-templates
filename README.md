@@ -1,4 +1,4 @@
-# Binding Complex Objects to an igGrid Column Template
+# Binding Complex Objects to an Ignite UI igGrid Column Template
 **Demo:** [Running code sample](http://rawgithub.com/Infragistics-Blogs/iggrid-column-templates/master/index.html)
 
 When working with the [Ignite UI](http://igniteui.com/) [igGrid](http://igniteui.com/grid/overview) you have the option to harness the column template feature in order to take control of how data is presented in a column inside the grid. While you can use the column template to make some relatively simple modifications to the data (e.g., add labels, etc.) you can also use it to take full control over the layout of a rendered column.
