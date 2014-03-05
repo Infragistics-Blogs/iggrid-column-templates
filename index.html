@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <title>igGrid: Binding Column Templates to Complex Objects</title>
+        <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+        <link href="http://cdn-na.infragistics.com/jquery/20132/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet" />
+        <link href="http://cdn-na.infragistics.com/jquery/20132/latest/css/structure/infragistics.css" rel="stylesheet" />
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+        <style>
+            .session-title {
+                color: #158cba;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+            .pad-top-md {
+                padding-top:25px;
+            }
+            .pad-top-lg {
+                padding-top:40px;
+            }
+            .pad-bottom-md {
+                padding-bottom:25px;
+            }
+            .pad-right-md {
+                padding-right:25px;
+            }
+            a[data-role="attend"] {
+                font-size:4em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container pad-top-lg">
+            <table id="grid"></table>
+        </div>
+        
+        <script id="sessions-template" type="text/template">
+            <div class="row pad-top-md pad-bottom-md pad-right-md">
+                <div class="col-xs-4 col-sm-2 text-center bio-links">
+                    <a href="/speakers/${speakerId}/${speakerFirstName}-${speakerLastName}">
+                        <div><img src="${speakerImageSource}" class="img-thumbnail" /></div>
+                        <h4>${speakerFirstName} ${speakerLastName}</h4>
+                    </a>
+                    <a href="http://twitter.com/${speakerTwitter}" target="_blank" class="text-sm">@${speakerTwitter}</a>
+                </div>                
+                <div class="col-xs-8 col-sm-10">
+                    <div class="row">
+                        <a href="/sessions/${id}/${titleEncoded}">
+                            <div class="col-sm-9">
+                                <h3 class="session-title">${title}</h3>
+                                ${description}
+                            </div>
+                        </a>
+                        <div class="col-sm-2">
+                            <span class="h3">${level}</span>
+                            <div>${roomName}</div>
+                            <div>${day}</div>
+                            <div>${timeShortString}</div>
+                            <div class="pad-top-md">
+                                <a href="#" data-role="attend" data-id="${id}" title="Attend Session"><i class="fa fa-user"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-sm pad-top-md">
+                        <div class="col-sm-4 text-left"><strong>Track:</strong> <a href="/track/${trackName}"  class="btn btn-default btn-sm">${trackName}</a></div>
+                        <div class="col-sm-4 text-right"><strong>Tags:</strong>
+                            {{each ${tagsList}}}
+                            <a href='/tags/$data' class='btn btn-default btn-sm'>$data</a>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+    </body>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdn-na.infragistics.com/jquery/20132/latest/js/infragistics.core.js"></script>
+    <script src="http://cdn-na.infragistics.com/jquery/20132/latest/js/infragistics.lob.js"></script>
+    <script>    
+        
+        $(function(){
+            var data = [{
+                    id: 24,
+                    description: 'Whether you\'re in a car, on a boat or in a plane learn to keep your app alive. See how to remove the dependence of a live internet connection from your applications and discover how the application cache and local storage APIs allow your pages to stay up regardless of connection status. You\'ll also see how to build a reliable cross-browser offline detection utility which makes it easy to know if your app can access the outside world or needs simply work in-browser.', 
+                    title: 'The Internet is Down, but Your App Lives! Building HTML5 Offline Applications',
+                    day: 'Monday',
+                    level: 'Beginner',
+                    roomName: 'Folsom',
+                    speakerFirstName: 'Craig',
+                    speakerImageSource: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAAD//gAfTEVBRCBUZWNobm9sb2dpZXMgSW5jLiBWMS4wMQD/2wCEAAUFBQgFCAwHBwwMCQkJDA0MDAwMDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0BBQgICgcKDAcHDA0MCgwNDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDf/EAaIAAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKCwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+foRAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/AABEIAGQAWAMBEQACEQEDEQH/2gAMAwEAAhEDEQA/APoGgDC8SpvsscjEsBBBIIPnIMgjkdeooA5vwn5dldak8hWNN9pyxCj/AFGByeOTx9aAM/xV8RtO0sGBZEnUq3meUd5X7wA+XjJYLx1waAPmqDxGjSAkBYwcDseDyf8APagDqpbyOWT3IH04UA8/UflQA1hnkdP89PX/APXQAkcg8wE/3hQBNMMTNjs7fzNACS53YHYUAVH689Tx1FAH2KeKAPMviT4rj0KxMY4mLRsoYMAdrq3ysARkY7jGOM5wCAfLGreKNQ1ySRHJMEzIxjQ/KTGCqZxjO1TjnqRzyKAMiSCe4Qx4I3YB46AEFsD3xx65xQBXfTZiQGBjQY+uB1AHqeBnv9aALUVxPbtk5+9nbnoBwBk8dAMj+VAHoejSx3cWDKgYfe+8SDjp93+XHYcc0AaqWlpCcmfJDZIEbnnjrnHp9KAB2tHkZ90h3MTwqjqSeMtnvQBYL2ip5xWRsNtwWC9QTngN+VAFR9Stk4S2Qn/aZmP9B/KgD60bjpQB8S+Jrl9b1W4e4PmN5rKqjHyqGIAGOOgxn6nnuAeqeCPh7b+QtzdRjdJyFPYdutAHoMngnT4vuRKDQBj3vhC0xgRL+VAHmXiHwnbujRxoInAyrAYwff2PcUAePWl02m3gjcbSG2tj64oA9GA9Me596AGLlcj/AAoAvnm3wOMSA+nVT1/z/WgDJYZBx/8Ar/yOaAPse9JSCRl+8EYj64Prx+fFAHxx4btPt2oBV53SE8Drz1/wz0oA+sdPhEESoP4QBQBekY9xQBl3ByMigDzzWYQ4Zu+DQB8z6/ZsurhQMFzuGO9AHcRpIoA2k8enegCVbaVzwjHP+yfX6UAaken3EkexUbJcEA5HYgnGPpQBC+h3f3dmO2T0/Dv9OB70AfV1wf3b/wC638j9f5UAeA+DvCb6Prc0bncsC71J5P7z7oPuB+ooA9C1jxMdFUhFUtgn5ic4HUhVDNgeuMUAY+g+NLzW5Njwxqp+6VZskZIzhlXoQQcZwetAFzxL4mTQV2shlc9EUgH6knoP84oA4KTxcmoR7pIHhz3yrgemdp4H4UAcHfBxrIkTgx22cgDI3OB36cd6ALE+pXKcmV+vqaAH3FzI0zYd9uePmPT+lADTK6nhjyPU/wCNAFVySTk9+/b60AfX1x9xu/ynj8KAMK3h2TmWQYlk6t6qGITH+ztwR9TQBZv9LilBYqPmHJwOfrQBk2Gh29nKJUAz0AwOMemOg5PTigDjPENmmp3xRscAD+fH+NAHOJ4RisW8yMFFXdwC3OeDuyTkYGAO3bFAGDqFisZkvT/FshHsFLMeffP6UAc3L0ycc0ATznbMVHUf5/nQA5uMUARSmgD7CJxQBl3gIkV+OAe2MYx/jQBm32qMoEQOCf0z7UAZrap/Z/LAOueWJO4A8YAwf50AcSt/9pvXlKmNVY43dx9O340Aaur6mi25Ix04oA89vbq3e0WLcX2kO4XggnIxyPXP5A96AMBzZZwUlP8AwJf04oAsf6LM28rJnv8AMB/T0oAmKWm0uyyDbjoQep/D09KAEZ7ADGyU/itAH1WTg0AZ1+SsYcdVbn6EHP8Aj+FAHPywRyOPMG4YyD6H1GKAMvVAibVGR/vKGH6bT+ZNAHE3ERkkLM21Qf4VKk+3LNx+H40AZesXKRxBB1Ocepz94+w7D60AckAFikPun/s1AFQH5hn60AWQ/agC2vzQufQp9f4qAKJBJwOaAPrS/voNNge6uWEcMKlnY9AB/MnoAOSSAMkigDxLwl8Q7rxp4jnt4v3Wm29tIY4sDczeZEokkbklsFsKDtUHHzHLEA9EvYHtm3oNyf3e6+6/4UAZ9zqsJQITkgHqMHOO+elAHnN5fNeS+VAN3OMjoPcnp+VAHM6xJJHfw2ZwWkiZ92cYYHAXnjG0HHPb3oADYyiNlAyxKkYIx39/egCsmnXAIwhJHuP8aAHNaTox3RsCOvFAFuKCTyXG0qxKEDB5wTnp6ZzzQBV+yzZ+63XPQ0AafxK8anxRHDY6aJI7eSTad+FMrkhUOAThV5wCeSckcCgDqPhpoVno80k9vGY2ZREXZmZnwdzMcnC7mAIVRgY6mgD2l4Q4oA47XbCNhwBk0AYEFjHYxtIwCqOc+w5oA8D13WP7R1I3Sf6tCFT/AHFJ/wDQiSfoaANC11CCfIU4IzweDn+R/CgCwWwaANG6mdZWClhjbxk4+6PegBv2qVR8skg/4Gw/rQBG19Ov/LWTjp87f40AVLYw2l3ayyjEMMig/wCyp+Xd9VB3D3FAH0PY6W9rmWJco3zHbyAT3GOsZ6qw6A4bpkgHUwzfuwT6UAZF/tagDxf4geIxEh0+A/Mw+fHZfT6n09M+1AHi4GTQBEq7GJB60Aa9nqLRfK/K8deo6dD/AI0AdLJdxXMhliOVIX65CjOR9f8A63FADmJ4Uf5/z2oAY3HXpQBzOvaylkwt1UySEAsAcBAeefVscgccdTzQB678P/id/Y2yzvyXtSR5cvLeWpHAI+9s91yV6bW4CgH05byWOoQrOqJJHINyvGRtYHuGQgn+eevNAHzv8UPiTZ6HK+maJEHuV3LLO7SMsT8jYq7sF1/iLZVTxtY5wAfOdvqUuo72uGLyg5LHqwOTk+4Oc/Ud6ALX3RkUAIqgdaAJAP8AOaAHpuXkHb34oA1rXUzGQswLL3IODj68/wAqAOnibT5xlZpBkd4+nscHr9MigDyRf9Jnklk5Z3Yn8+3sOg9qAJWuGssCP7uc7T0B9sYI/PHtQB7L8MfHGp6fHcwIyPCLaWdY3UlUkjXIK4YEA9GGecDuM0AeNXdzJqd081wdzyyOzY45Zix/Mk0ALEghmATgEEfoT/MCgDQzzj0oAlQf5/CgCQCgCU8CgCM8GgAgdo2ypxjp+GP596AP/9k=',
+                    speakerLastName: 'Shoemaker',
+                    speakerTwitter: 'craigshoemaker',
+                    tagsList: ['HTML', 'Web'],
+                    timeShortString: '2:50 PM',
+                    titleEncoded: 'the%20internet%20is%20down%20but%20your%20app%20lives!%20building%20html5%20offline%20applications',
+                    trackName: 'HTML'
+                }
+            ];
+            
+            var templateMarkup = $('#sessions-template').html();
+            var $grid = $('#grid');
+                        
+            $grid.igGrid({
+                dataSource: data,
+                autoGenerateColumns: false,
+                localSchemaTransform: false,
+                columns:[{
+                    width:'100%',
+                    template:templateMarkup
+                }],
+                width: '100%'
+            });
+        });
+    </script>
+</html>
