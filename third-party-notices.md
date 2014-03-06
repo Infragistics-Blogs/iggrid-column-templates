@@ -5,8 +5,8 @@ Third Party Software may impose additional restrictions and it is the user's res
 
 | Software                                                    | License |
 | -------------                                               | ------------- |
-| [Ignite UI](http://igniteui.com)                            | <a href="http://www.infragistics.com/legal/license/ultimate/">Proprietary/Closed Source/Commercial</a>  |
-| [Font Awesome](http://fortawesome.github.io/Font-Awesome/)  | <a href="http://fortawesome.github.io/Font-Awesome/license/">SIL OFL 1.1 and MIT</a>  |
-| [Bootstrap](http://getbootstrap.com/)                       | <a href="http://getbootstrap.com/">MIT</a>  |
-| [jQuery, jQuery UI, jQuery Mobile](http://jquery.org)       | <a href="http://jquery.org/license/">MIT</a>  |
-| [Modernizr](http://modernizr.com)                           | <a href="http://modernizr.com/license/">MIT</a>  |
+| [Ignite UI](http://igniteui.com)                            | [Proprietary/Closed Source/Commercial](http://www.infragistics.com/legal/license/ultimate/)  |
+| [Font Awesome](http://fortawesome.github.io/Font-Awesome/)  | [SIL OFL 1.1 and MIT](http://fortawesome.github.io/Font-Awesome/license/)  |
+| [Bootstrap](http://getbootstrap.com/)                       | [MIT](http://getbootstrap.com/)  |
+| [jQuery, jQuery UI, jQuery Mobile](http://jquery.org)       | [MIT](http://jquery.org/license/)  |
+| [Modernizr](http://modernizr.com)                           | [MIT](http://modernizr.com/license/)  |
