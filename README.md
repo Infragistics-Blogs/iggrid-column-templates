@@ -1,7 +1,7 @@
 # Binding Complex Objects to an Ignite UI igGrid Column Template
-**Demo:** [Running code sample](http://rawgithub.com/Infragistics-Blogs/iggrid-column-templates/master/index.html)
+**Demo:** [Running code sample](http://infragistics-blogs.github.io/iggrid-column-templates/)
 
-When working with the [Ignite UI](http://igniteui.com/) [igGrid](http://igniteui.com/grid/overview) you have the option to harness the column template feature in order to take control of how data is presented in a column inside the grid. While you can use the column template to make some relatively simple modifications to the data (e.g., add labels, etc.) you can also use it to take full control over the layout of a rendered column.
+When working with the [Ignite UI](http://www.igniteui.com/) [igGrid](http://www.igniteui.com/grid/overview) you have the option to harness the column template feature in order to take control of how data is presented in a column inside the grid. While you can use the column template to make some relatively simple modifications to the data (e.g., add labels, etc.) you can also use it to take full control over the layout of a rendered column.
 The following screenshot shows how to use the grid with a single column to render data with a custom layout. 
 
 <img style="width:100%;max-width:948px" title="Demo of binding igGrid column template to complex JavaScript object." alt="" src="http://raw.github.com/Infragistics-Blogs/iggrid-column-templates/master/iggrid-column-templates.png" />
@@ -107,7 +107,7 @@ In the columns array a single column is defined and set at 100% width and the te
 var templateMarkup = $('#sessions-template').html();
 ```
 
-[Make sure to check out the running sample.](http://rawgithub.com/Infragistics-Blogs/iggrid-column-templates/master/index.html)
+[Make sure to check out the running sample.](http://infragistics-blogs.github.io/iggrid-column-templates/)
 
 ## Summary
 The igGrid column templates allow you a great amount of flexibility in customizing columns in simple ways like adding some basic formatting all the way to taking full control over how data is rendered in the grid.
